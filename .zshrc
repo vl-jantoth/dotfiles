@@ -35,7 +35,6 @@ alias ml='cd ~/Documents/sbx/ml'
 alias viberkill='kill -9 $(ps -ef | pgrep viber)'
 alias ll='ls -l'
 
-# alias xjira='_xjira(){ ~/venv3_main_env/bin/python ~/bin/jira-hours.py -l https://jira.zoomint.com -u jan.toth -j "$1" -d "$2";}; _xjira'
 
 setopt interactivecomments
 bindkey '^[[3~' delete-char 
@@ -48,9 +47,9 @@ bindkey -e
 #export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 #export PATH=$PATH:/usr/local/go/bin:/home/jantoth/go/bin
-# export PATH=$PATH:~/Documents/gocode
+#export PATH=$PATH:~/Documents/gocode
 
-# export GOROOT="/usr/local/go"
+#export GOROOT="/usr/local/go"
 #export GOPATH=~/Documents/golib
 #export PATH=$PATH:$GOPATH/bin
 #export GOPATH=$GOPATH:~/Documents/gocode
@@ -88,7 +87,6 @@ alias tmux='tmux -2'
 export BROWSER=/usr/bin/chromium
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias kp='keepassxc ~/Documents/sbx/aws_data/cloudinuse-custom.kdbx'
 
 # dotfiles status
 # dotfiles add .vimrc
@@ -97,3 +95,4 @@ alias kp='keepassxc ~/Documents/sbx/aws_data/cloudinuse-custom.kdbx'
 # dotfiles commit -m "Add bashrc"
 # dotfiles push
 
+alias kp='keepassxc ~/Documents/sbx/aws_data/cloudinuse-custom.kdbx'
