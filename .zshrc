@@ -88,6 +88,8 @@ alias tmux='tmux -2'
 export BROWSER=/usr/bin/chromium
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias kp='keepassxc ~/Documents/sbx/aws_data/cloudinuse-custom.kdbx'
+
 # dotfiles status
 # dotfiles add .vimrc
 # dotfiles commit -m "Add vimrc"
