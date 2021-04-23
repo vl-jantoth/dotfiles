@@ -205,4 +205,6 @@ nmap da1 :call Delyml('1')<CR>
 nmap da2 :call Delyml('2')<CR>
 nmap da3 :call Delyml('3')<CR>
 
-
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber

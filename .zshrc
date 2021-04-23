@@ -96,3 +96,4 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # dotfiles push
 
 alias kp='keepassxc ~/Documents/sbx/aws_data/cloudinuse-custom.kdbx'
+[[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
