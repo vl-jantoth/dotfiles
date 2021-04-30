@@ -14,6 +14,7 @@ Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'sainnhe/sonokai'
+Plug 'powerline/powerline'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/AutoComplPop'
@@ -68,7 +69,11 @@ set ai
 set incsearch
 set undofile
 set undodir=~/.vim/undodir
-
+set cursorline
+hi cursorline cterm=none term=none
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+highlight CursorLine guibg=#303000 ctermbg=234
 
 " Jan Toth
 map <C-Left> <C-w>h
@@ -145,6 +150,10 @@ nmap <leader>i :call MarkdownImageInsertCustom()<CR>
 "nmap <leader>c :read! sh tocreadme.sh ~/Documents/sbx/aws-eks-devopsinuse/README.md <CR>
 nmap <leader>d :m+1<CR>
 nmap <leader>u :m-2<CR>
+
+
+" Paste to vim from clipboard
+nmap <leader>p "*p<CR>
 
 nmap <leader>qw :call Quote('word')<CR>
 nmap <leader>qs :call Quote('string')<CR>

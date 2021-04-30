@@ -52,10 +52,10 @@ bindkey "\E[1~" beginning-of-line
 bindkey "\E[4~" end-of-line
 bindkey -e
 
-#autoload -U compinit
-#zstyle ':completion:*' menu select
-#zmodload zsh/complist
-#compinit
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
 
 man() {
     LESS_TERMCAP_md=$'\e[01;31m' \
@@ -104,5 +104,4 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
 
-
-
+# Start tmux when terminal lunched
