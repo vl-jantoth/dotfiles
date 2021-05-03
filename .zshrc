@@ -42,6 +42,7 @@ alias viberkill='kill -9 $(ps -ef | pgrep viber)'
 alias ll='ls -l'
 alias w='ip a show wlp1s0'
 alias e='ip a show enp0s31f6'
+alias d='dragon-drag-and-drop -a -x'
 
 setopt interactivecomments
 
