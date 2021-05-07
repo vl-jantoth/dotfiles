@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-git'
 Plug 'preservim/nerdtree'
+Plug 'psliwka/vim-smoothie'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'sainnhe/sonokai'
