@@ -71,6 +71,8 @@ set incsearch
 set undofile
 set undodir=~/.vim/undodir
 set cursorline
+set scr=10
+
 hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
@@ -81,7 +83,6 @@ map <C-Left> <C-w>h
 map <C-Down> <C-w>j
 map <C-Up> <C-w>k
 map <C-Right> <C-w>l
-
 " FZF
 let g:fzf_action = { 'enter': 'tabedit' }
 
@@ -215,4 +216,5 @@ nmap da1 :call Delyml('1')<CR>
 nmap da2 :call Delyml('2')<CR>
 nmap da3 :call Delyml('3')<CR>
 
-set relativenumber
+
+"set relativenumber

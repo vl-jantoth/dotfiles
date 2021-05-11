@@ -53,10 +53,10 @@ bindkey "\E[1~" beginning-of-line
 bindkey "\E[4~" end-of-line
 bindkey -e
 
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
+#autoload -U compinit
+#zstyle ':completion:*' menu select
+#zmodload zsh/complist
+#compinit
 
 man() {
     LESS_TERMCAP_md=$'\e[01;31m' \
@@ -70,7 +70,7 @@ man() {
 
 # neofetch --uptime_shorthand on --ascii_distro Plasma
 
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+# [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 # [ -f /opt/miniconda3/etc/profoile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
@@ -89,7 +89,27 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 #alias k=kubectl
 #complete -F __start_kubectl k
+
+#autoload -Uz compinit
+#compinit
+
+
+# Start tmux when terminal lunched
+# The following lines were added by compinstall
+
+#zstyle ':completion:*' menu select
+#
+
+zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
+zstyle :compinstall filename '/home/jantoth/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+# End of lines configured by zsh-newuser-install
 # source <(kubectl completion zsh)
+#
 plugins=(
     git 
     kubectl
@@ -98,11 +118,7 @@ plugins=(
     archlinux
 )
 
-autoload -Uz compinit
-compinit
 
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
-
-# Start tmux when terminal lunched
