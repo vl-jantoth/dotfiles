@@ -6,6 +6,8 @@ setopt appendhistory
 
 source ~/bin/ht.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 
 bindkey -e
 #export AWS_ASSUME_ROLE_TTL=1h
@@ -43,7 +45,7 @@ alias ll='ls -l'
 alias w='ip a show wlp1s0'
 alias e='ip a show enp0s31f6'
 alias d='dragon-drag-and-drop -a -x'
-
+alias xclip="xclip -selection c"
 setopt interactivecomments
 
 bindkey '^[[3~' delete-char 
@@ -103,20 +105,22 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
 zstyle :compinstall filename '/home/jantoth/.zshrc'
 
-autoload -Uz compinit
+autoload -Uz compinit promptinit
 compinit
+promptinit
+
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 # End of lines configured by zsh-newuser-install
 # source <(kubectl completion zsh)
 #
-plugins=(
-    git 
-    kubectl
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    archlinux
-)
+#plugins=(
+#    git 
+#    kubectl
+#    zsh-autosuggestions
+#    zsh-syntax-highlighting
+#    archlinux
+#)
 
 
 source <(kubectl completion zsh)
