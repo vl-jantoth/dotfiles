@@ -45,7 +45,7 @@ alias ll='ls -l'
 alias w='ip a show wlp1s0'
 alias e='ip a show enp0s31f6'
 alias d='dragon-drag-and-drop -a -x'
-alias xclip="xclip -selection c"
+alias x="xclip -selection c"
 setopt interactivecomments
 
 bindkey '^[[3~' delete-char 
@@ -75,7 +75,7 @@ man() {
 # [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 # [ -f /opt/miniconda3/etc/profoile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+# [ -z "$TMUX" ] && export TERM=xterm-256color
 alias tmux='tmux -2'
 
 
@@ -126,3 +126,16 @@ promptinit
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
+
+
+export NNN_PLUG='p:preview-tui-ext;f:fzopen' 
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_BMS='d:~/Documents;w:~/Downloads/'
+
+
+f(){ fzf | xargs -ro  $EDITOR ; }
+
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
