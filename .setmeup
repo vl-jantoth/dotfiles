@@ -1,5 +1,6 @@
-#!/usr/bin/env
+#!/usr/bin/env bash
 
+set -o allexport
 cat << 'EOF' >> ~/.bashrc
 
 alias k=kubectl
@@ -8,7 +9,4 @@ complete -F __start_kubectl k
 EOF
 
 source ~/.bashrc
-
-alias k=kubectl
-complete -F __start_kubectl k
 
