@@ -216,5 +216,6 @@ nmap da1 :call Delyml('1')<CR>
 nmap da2 :call Delyml('2')<CR>
 nmap da3 :call Delyml('3')<CR>
 
-
+" set powerline statusbar
+let g:powerline_pycmd="py3"
 "set relativenumber

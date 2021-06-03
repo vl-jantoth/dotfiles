@@ -4,9 +4,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-source ~/bin/ht.sh
+#source ~/bin/ht.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 bindkey -e
@@ -18,7 +18,7 @@ export BROWSER=/usr/bin/chromium
 export VBOX_USB=usbfs
 export EDITOR=vim
 
-powerline-daemon -q
+#powerline-daemon -q
 
 # Edit file: /usr/lib/python3.9/site-packages/powerline_gitstatus/segments.py
 # ...
@@ -26,7 +26,7 @@ powerline-daemon -q
 # ...
 
 # source /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
-source /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
+#source /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 # Bash history completion bound to arrow keys (down, up)
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
@@ -46,6 +46,7 @@ alias w='ip a show wlp1s0'
 alias e='ip a show enp0s31f6'
 alias d='dragon-drag-and-drop -a -x'
 alias x="xclip -selection c"
+alias lc='colorls -lA --sd'
 setopt interactivecomments
 
 bindkey '^[[3~' delete-char 
@@ -101,26 +102,28 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 #zstyle ':completion:*' menu select
 #
+autoload -Uz compinit promptinit vcs_info
+compinit
+promptinit
 
 zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
 zstyle :compinstall filename '/home/jantoth/.zshrc'
 
-autoload -Uz compinit promptinit
-compinit
-promptinit
+precmd() { vcs_info }
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '%b'
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
 
+autoload -U colors && colors    # Load colors
+PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}arch%{$fg[green]%}:%{$fg[blue]%}${PWD/#$HOME/~} %{$fg[green]%}${vcs_info_msg_0_}%{$fg[red]%}]%{$reset_color%} %b'
+
+#PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[red]%}%~%{$fg[red]%} ${vcs_info_msg_0_}]%{$reset_color%}$%b "
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 # End of lines configured by zsh-newuser-install
 # source <(kubectl completion zsh)
 #
-#plugins=(
-#    git 
-#    kubectl
-#    zsh-autosuggestions
-#    zsh-syntax-highlighting
-#    archlinux
-#)
 
 
 source <(kubectl completion zsh)
@@ -133,9 +136,18 @@ export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_BMS='d:~/Documents;w:~/Downloads/'
 
 
+
+
 f(){ fzf | xargs -ro  $EDITOR ; }
 
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+fpath+=$HOME/.zsh/pure
+
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[gray]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+
+
 
