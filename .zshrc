@@ -1,10 +1,8 @@
-# source  ~/.zshcomp
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-#source ~/bin/ht.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -12,34 +10,24 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey -e
 #export AWS_ASSUME_ROLE_TTL=1h
 #export AWS_SESSION_TTL=12h
-
 export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.9/site-packages
 export BROWSER=/usr/bin/chromium
 export VBOX_USB=usbfs
 export EDITOR=vim
+export NNN_PLUG='p:preview-tui-ext;f:fzopen' 
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_BMS='d:~/Documents;w:~/Downloads/'
 
-#powerline-daemon -q
-
-# Edit file: /usr/lib/python3.9/site-packages/powerline_gitstatus/segments.py
-# ...
-# return self.build_segments(formats, branch[:6], detached, tag, behind, ahead, staged, unmerged, changed, untracked, stashed)
-# ...
-
-# source /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
-#source /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
-# Bash history completion bound to arrow keys (down, up)
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
-#bindkey -e
-LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+# LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
+# https://antelo.medium.com/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias kp='keepassxc ~/Documents/sbx/aws_data/cloudinuse-custom.kdbx'
-alias rec='cd ~/Documents/recordings/course5'
-alias hc='cd ~/Documents/sbx/helmfile-course'
 alias wo='cd ~/Documents/work'
 alias sb='cd ~/Documents/sbx'
-alias di='cd ~/Documents/sbx/aws-eks-devopsinuse'
-alias ml='cd ~/Documents/sbx/ml'
+alias doc='cd ~/Documents'
 alias viberkill='kill -9 $(ps -ef | pgrep viber)'
 alias ll='ls -l'
 alias w='ip a show wlp1s0'
@@ -47,6 +35,7 @@ alias e='ip a show enp0s31f6'
 alias d='dragon-drag-and-drop -a -x'
 alias x="xclip -selection c"
 alias lc='colorls -lA --sd'
+alias tmux='tmux -2'
 setopt interactivecomments
 
 bindkey '^[[3~' delete-char 
@@ -55,11 +44,6 @@ bindkey '^[[F' end-of-line
 bindkey "\E[1~" beginning-of-line
 bindkey "\E[4~" end-of-line
 bindkey -e
-
-#autoload -U compinit
-#zstyle ':completion:*' menu select
-#zmodload zsh/complist
-#compinit
 
 man() {
     LESS_TERMCAP_md=$'\e[01;31m' \
@@ -71,72 +55,25 @@ man() {
     command man "$@"
 }
 
-# neofetch --uptime_shorthand on --ascii_distro Plasma
 
-# [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
-# [ -f /opt/miniconda3/etc/profoile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
-
-# [ -z "$TMUX" ] && export TERM=xterm-256color
-alias tmux='tmux -2'
-
-
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# dotfiles status
-# dotfiles add .vimrc
-# dotfiles commit -m "Add vimrc"
-# dotfiles add .bashrc
-# dotfiles commit -m "Add bashrc"
-# dotfiles push
-
-
-#alias k=kubectl
-#complete -F __start_kubectl k
-
-#autoload -Uz compinit
-#compinit
-
-
-# Start tmux when terminal lunched
-# The following lines were added by compinstall
-
-#zstyle ':completion:*' menu select
-#
+autoload -U colors && colors    # Load colors
 autoload -Uz compinit promptinit vcs_info
 compinit
 promptinit
 
 zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
-zstyle :compinstall filename '/home/jantoth/.zshrc'
 
 precmd() { vcs_info }
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '%b'
-# Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 
-autoload -U colors && colors    # Load colors
-PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}arch%{$fg[green]%}:%{$fg[blue]%}${PWD/#$HOME/~} %{$fg[green]%}${vcs_info_msg_0_}%{$fg[red]%}]%{$reset_color%} %b'
+PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}arch%{$fg[green]%}:%{$fg[blue]%}${PWD/#$HOME/~}%{$fg[green]%} ${vcs_info_msg_0_}%{$fg[red]%}]%{$reset_color%} %b'
 
-#PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[red]%}%~%{$fg[red]%} ${vcs_info_msg_0_}]%{$reset_color%}$%b "
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
-# End of lines configured by zsh-newuser-install
-# source <(kubectl completion zsh)
-#
-
-
+# Kubernetes
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
-
-
-export NNN_PLUG='p:preview-tui-ext;f:fzopen' 
-export NNN_FIFO='/tmp/nnn.fifo'
-export NNN_BMS='d:~/Documents;w:~/Downloads/'
-
-
-
 
 f(){ fzf | xargs -ro  $EDITOR ; }
 
@@ -145,8 +82,6 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 fpath+=$HOME/.zsh/pure
-
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[gray]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 
 
