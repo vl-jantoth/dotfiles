@@ -17,6 +17,7 @@ export EDITOR=vim
 export NNN_PLUG='p:preview-tui-ext;f:fzopen' 
 export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_BMS='d:~/Documents;w:~/Downloads/'
+export LANG=en_US.UTF-8
 
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
@@ -35,7 +36,7 @@ alias e='ip a show enp0s31f6'
 alias d='dragon-drag-and-drop -a -x'
 alias x="xclip -selection c"
 alias lc='colorls -lA --sd'
-alias tmux='tmux -2'
+alias tmux='tmux -u2'
 setopt interactivecomments
 
 bindkey '^[[3~' delete-char 
@@ -68,7 +69,8 @@ precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b'
 setopt PROMPT_SUBST
 
-PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}arch%{$fg[green]%}:%{$fg[blue]%}${PWD/#$HOME/~}%{$fg[green]%} ${vcs_info_msg_0_}%{$fg[red]%}]%{$reset_color%} %b'
+# PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}arch%{$fg[green]%}:%{$fg[blue]%}${PWD/#$HOME/~}%{$fg[green]%} ${vcs_info_msg_0_}%{$fg[red]%}]%{$reset_color%} %b'
+PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}arch%{$fg[green]%}:%{$fg[blue]%}${PWD##*/}%{$fg[green]%} ${vcs_info_msg_0_}%{$fg[red]%}]%{$reset_color%} %b'
 
 # Kubernetes
 source <(kubectl completion zsh)
