@@ -25,7 +25,31 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'iamcco/markdown-preview.vim'
 "Plug 'ryanoasis/vim-webdevicons'
 "Plug 'scrooloose/nerdtree', { 'commit': '8d005db' }
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'HerringtonDarkholme/yats.vim' " TS syntax
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
 call plug#end()
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
+
+
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
 
 " Ranger settings
 let g:NERDTreeHijackNetrw = 0 
@@ -49,11 +73,15 @@ endfunction
 " open files in new tab
 let NERDTreeCustomOpenArgs={'file':{'where': 't'}}
 " nerdtree on startup
+
 let g:nerdtree_tabs_open_on_console_startup = 0
+let g:nerdtree_tabs_autofind = 1
+" Highlight currently open buffer in NERDTree
 " Enable syntax highlighting.
 syntax on
 " Set the color scheme.
 colorscheme landscape
+"colorscheme gruvbox
 " -----------------------------------------------------------------------------
 " Basic Settings
 "   Research any of these by running :help <setting>
@@ -219,3 +247,5 @@ nmap da3 :call Delyml('3')<CR>
 " set powerline statusbar
 let g:powerline_pycmd="py3"
 "set relativenumber
+" copy file content to clipboard
+nmap <leader>x :!xclip -selection c %<CR><CR>
